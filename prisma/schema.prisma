@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Gender {
+  male
+  female
+  other
+}
+
+model Person {
+  id           String    @id @default(uuid())
+  name         String
+  birthDate    DateTime? @db.Date
+  height       Decimal   @db.Decimal(5, 2) // cm
+  gender       Gender?
+  targetWeight Decimal?  @db.Decimal(5, 2) // kg
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  weightEntries WeightEntry[]
+
+  @@map("persons")
+}
+
+model WeightEntry {
+  id        String   @id @default(uuid())
+  personId  String
+  weight    Decimal  @db.Decimal(5, 2) // kg
+  date      DateTime @db.Date
+  note      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  person    Person   @relation(fields: [personId], references: [id], onDelete: Cascade)
+
+  @@index([personId, date])
+  @@map("weight_entries")
+}
