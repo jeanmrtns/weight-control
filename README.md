@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Controle de Peso
 
-## Getting Started
+Aplicação web para cadastro de pessoas e acompanhamento do peso ao longo do tempo, com dashboards individuais e comparativos.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router) + TypeScript
+- **shadcn/ui** (Tailwind) + Recharts para gráficos
+- **Prisma 7** + PostgreSQL
+- **Zod** para validação
+
+## Pré-requisitos
+
+- Node.js 18+
+- PostgreSQL rodando (você já tem)
+- npm ou pnpm
+
+## Configuração
+
+1. **Clone e instale as dependências:**
+
+```bash
+npm install
+```
+
+2. **Configure o banco de dados**
+
+Copie o arquivo de exemplo e edite com sua URL do PostgreSQL:
+
+```bash
+cp .env.example .env
+```
+
+No `.env`, defina `DATABASE_URL` com uma URL no formato:
+
+```
+postgresql://USUARIO:SENHA@HOST:PORTA/NOME_DO_BANCO
+```
+
+Exemplo para um Postgres local:
+
+```
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/weight_control"
+```
+
+3. **Crie o banco e rode as migrações**
+
+Crie o banco `weight_control` no PostgreSQL (se ainda não existir) e execute:
+
+```bash
+npx prisma migrate dev --name init
+```
+
+Isso cria as tabelas `persons` e `weight_entries`.
+
+4. **Inicie a aplicação**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Funcionalidades
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Pessoas:** cadastro com nome, data de nascimento, altura (cm), gênero e peso meta.
+- **Registro de peso:** informar peso e data para qualquer pessoa (com observação opcional).
+- **Dashboard individual:** por pessoa, gráfico de evolução do peso, IMC, classificação (OMS), tendência e alertas (ex.: acima da meta).
+- **Dashboard comparativo:** escolher várias pessoas e ver gráfico de linhas comparativo + tabela resumo (peso atual, IMC, variação %, tendência).
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev` — desenvolvimento
+- `npm run build` — build de produção (usa webpack)
+- `npm run start` — inicia o servidor de produção após o build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Estrutura principal
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `src/app` — rotas (páginas e API)
+- `src/components` — formulários, gráficos, dashboards, UI
+- `src/lib` — `db.ts` (Prisma), `bmi.ts` (IMC e tendência), `utils.ts`
+- `prisma/schema.prisma` — modelo de dados
 
-## Deploy on Vercel
+## Observação sobre o build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+O build está configurado com `next build --webpack` para evitar problemas de resolução de módulos com o Turbopack. O `DATABASE_URL` no `.env` é carregado em tempo de build; use uma URL válida de PostgreSQL para que a aplicação funcione corretamente.
