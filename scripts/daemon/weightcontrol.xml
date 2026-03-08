@@ -1,0 +1,32 @@
+<service>
+	<id>weightcontrol.exe</id>
+	<name>WeightControl</name>
+	<description>Controle de Peso - Servidor Next.js em produção</description>
+	<executable>C:\nvm4w\nodejs\node.exe</executable>
+	<argument>--harmony</argument>
+	<argument>C:\Users\Jean\www\weight-control\node_modules\node-windows\lib\wrapper.js</argument>
+	<argument>--file</argument>
+	<argument>C:\Users\Jean\www\weight-control\scripts\service-runner.js</argument>
+	<argument>--scriptoptions=</argument>
+	<argument>--log</argument>
+	<argument>WeightControl wrapper</argument>
+	<argument>--grow</argument>
+	<argument>0.25</argument>
+	<argument>--wait</argument>
+	<argument>1</argument>
+	<argument>--maxrestarts</argument>
+	<argument>3</argument>
+	<argument>--abortonerror</argument>
+	<argument>n</argument>
+	<argument>--stopparentfirst</argument>
+	<argument>undefined</argument>
+	<logmode>rotate</logmode>
+	<stoptimeout>30sec</stoptimeout>
+	<env name="WEIGHT_CONTROL_ROOT" value="C:\Users\Jean\www\weight-control"/>
+	<serviceaccount>
+		<domain>RENANFILG-PC</domain>
+		<user>LocalSystem</user>
+		<password></password>
+	</serviceaccount>
+	<workingdirectory>C:\Users\Jean\www\weight-control</workingdirectory>
+</service>
