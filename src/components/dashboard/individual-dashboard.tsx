@@ -133,9 +133,9 @@ export function IndividualDashboard({
                     underweight: "bmi.belowRecommended",
                     normal: "bmi.healthyRange",
                     overweight: "bmi.aboveIdeal",
-                    obesity_1: "bmi.seeDoctor",
-                    obesity_2: "bmi.consultProfessional",
-                    obesity_3: "bmi.specializedCare",
+                    obesity1: "bmi.seeDoctor",
+                    obesity2: "bmi.consultProfessional",
+                    obesity3: "bmi.specializedCare",
                   }[bmiClassification.category] ?? ""
                 )}
               </p>

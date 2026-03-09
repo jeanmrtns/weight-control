@@ -13,9 +13,9 @@ export const bmiCategoryVariants: Record<BMICategory, string> = {
   underweight: "bg-sky-500/20 text-sky-700 dark:text-sky-300",
   normal: "bg-green-500/20 text-green-700 dark:text-green-300",
   overweight: "bg-amber-500/20 text-amber-700 dark:text-amber-300",
-  obesity_1: "bg-orange-500/20 text-orange-700 dark:text-orange-300",
-  obesity_2: "bg-red-500/20 text-red-700 dark:text-red-300",
-  obesity_3: "bg-red-700/30 text-red-800 dark:text-red-200",
+  obesity1: "bg-orange-500/20 text-orange-700 dark:text-orange-300",
+  obesity2: "bg-red-500/20 text-red-700 dark:text-red-300",
+  obesity3: "bg-red-700/30 text-red-800 dark:text-red-200",
 };
 
 type BMIBadgeProps = {
@@ -28,9 +28,9 @@ const BMI_DESC_KEYS: Record<BMICategory, string> = {
   underweight: "bmi.belowRecommended",
   normal: "bmi.healthyRange",
   overweight: "bmi.aboveIdeal",
-  obesity_1: "bmi.seeDoctor",
-  obesity_2: "bmi.consultProfessional",
-  obesity_3: "bmi.specializedCare",
+  obesity1: "bmi.seeDoctor",
+  obesity2: "bmi.consultProfessional",
+  obesity3: "bmi.specializedCare",
 };
 
 export function BMIBadge({ bmi, className, showDescription }: BMIBadgeProps) {

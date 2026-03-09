@@ -11,9 +11,9 @@ export type BMICategory =
   | "underweight"
   | "normal"
   | "overweight"
-  | "obesity_1"
-  | "obesity_2"
-  | "obesity_3";
+  | "obesity1"
+  | "obesity2"
+  | "obesity3";
 
 export interface BMIClassification {
   category: BMICategory;
@@ -45,18 +45,18 @@ export function getBMIClassification(bmi: number): BMIClassification {
     };
   if (bmi < 35)
     return {
-      category: "obesity_1",
+      category: "obesity1",
       label: "Obesidade Grau I",
       description: "Recomenda-se acompanhamento médico e nutricional.",
     };
   if (bmi < 40)
     return {
-      category: "obesity_2",
+      category: "obesity2",
       label: "Obesidade Grau II",
       description: "Consulte um profissional de saúde para um plano adequado.",
     };
   return {
-    category: "obesity_3",
+    category: "obesity3",
     label: "Obesidade Grau III",
     description: "É importante buscar orientação médica especializada.",
   };

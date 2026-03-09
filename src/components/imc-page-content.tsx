@@ -9,18 +9,18 @@ const LEVEL_IDS = [
   "underweight",
   "normal",
   "overweight",
-  "obesity_1",
-  "obesity_2",
-  "obesity_3",
+  "obesity1",
+  "obesity2",
+  "obesity3",
 ] as const;
 
 const BADGE_CLASSES: Record<string, string> = {
   underweight: "bg-sky-500/20 text-sky-700 dark:text-sky-300",
   normal: "bg-green-500/20 text-green-700 dark:text-green-300",
   overweight: "bg-amber-500/20 text-amber-700 dark:text-amber-300",
-  obesity_1: "bg-orange-500/20 text-orange-700 dark:text-orange-300",
-  obesity_2: "bg-red-500/20 text-red-700 dark:text-red-300",
-  obesity_3: "bg-red-700/30 text-red-800 dark:text-red-200",
+  obesity1: "bg-orange-500/20 text-orange-700 dark:text-orange-300",
+  obesity2: "bg-red-500/20 text-red-700 dark:text-red-300",
+  obesity3: "bg-red-700/30 text-red-800 dark:text-red-200",
 };
 
 function imcKey(id: string): string {
